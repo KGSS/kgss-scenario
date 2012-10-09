@@ -31,17 +31,30 @@
     <!-- MAIN CONTENT -->
     <div id="main_content_wrap" class="outer">
       <section id="main_content" class="inner">
-        <p><strong>Downloading the Scenarios</strong></p>
+        <h1>Requirements</h1>
 
-<p>Click on the <em>.zip</em> or <em>.tar.gz</em> at the top of this page to download the plugin, its resources and the source code.</p>
+<p>Kerbal Space Program version <strong>0.17</strong></p>
 
-<p><strong>Installing the Plugin</strong></p>
+<h1>Downloading the Scenarios</h1>
 
-<p>Move kgss-scenario.dll which is included as part of the download in the release folder to KSP\Plugins</p>
+<p>Click on the <em>.tar.gz</em> or <em>.zip</em> at the top of this page to download the plugin, its resources and the source code.</p>
 
-<p><strong>Installing the Random Failure Scenario</strong></p>
+<h1>Installing the Plugin</h1>
 
-<p>Add the following lines to the bottom of your persistence.sfs, just before the final closing brace</p>
+<p>Move <em>release\kgss-scenario.dll</em> to <em>KSP\Plugins</em></p>
+
+<h1>List of Scenarios</h1>
+
+<ol>
+<li>Random Failure Scenario</li>
+<li>Point of no Return Scenario</li>
+</ol><h1>Random Failure Scenario</h1>
+
+<p>This scenario is designed to be used within the sandbox mode, and introduces random failures to your ships. The aim of this is to add an extra layer of difficulty, by requiring the player to design craft which are able to withstand failures, for the duration of common objectives such as landing on the Mun.</p>
+
+<h3>Installation</h3>
+
+<p>Add the following lines to the bottom of your <em>persistence.sfs</em>, just before the final closing brace</p>
 
 <pre><code>$SCENARIO
 ${
@@ -49,6 +62,23 @@ $   name = RandomFailure
 $   scene = 7
 $}
 </code></pre>
+
+<h3>Features</h3>
+
+<ul>
+<li>Random exploding parts</li>
+<li>Random part disable and enable</li>
+<li>Probability of failure scales with the size of the craft</li>
+</ul><h3>Planned Features</h3>
+
+<ul>
+<li>Increased probability of explosion for struts and aerofoils</li>
+<li>Engine failure wherein it exhibits on/off cycle behaviour</li>
+<li>Modifying the endpoints of fuel lines</li>
+<li>GUI to indicate when and what type of failure has occurred</li>
+</ul><h1>Point of no Return</h1>
+
+<p>Coming soon ...</p>
       </section>
     </div>
 
