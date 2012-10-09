@@ -1,0 +1,7 @@
+*.sln
+bin
+obj
+Properties
+*.csproj
+screenshots
+*.suo
