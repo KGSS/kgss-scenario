@@ -9,7 +9,10 @@ namespace KGSS_Scenario
     {
         protected delegate void Failure();
         protected static Random random = new Random();
-        protected List<Pair<Failure, float>> possibleFailures = new List<Pair<Failure,float>>();
+
+        //Store the failure function and the associated probabilities in a pair.
+        //The pair of probabilities represent the base probability, and the probability adjusted based on craft metrics.
+        protected List<Pair<Failure, Pair<float,float>>> possibleFailures = new List<Pair<Failure, Pair<float,float>>>();
 
         #region Initilisation
 
@@ -21,7 +24,7 @@ namespace KGSS_Scenario
         private void initialiseFailures()
         {
             //Intermittent part explosion.
-            possibleFailures.Add(new Pair<Failure, float>(() =>
+            possibleFailures.Add(new Pair<Failure, Pair<float, float>>(() =>
             {
                 if (FlightGlobals.ActiveVessel.parts.Count > 0)
                 {
@@ -30,10 +33,10 @@ namespace KGSS_Scenario
                     FlightGlobals.ActiveVessel.parts[random.Next(0, FlightGlobals.ActiveVessel.parts.Count)].explode();
                 }
 
-            }, 0.1f));
+            }, new Pair<float,float>(0.05f, 0f)));
 
             //Intermittent part disable.
-            possibleFailures.Add(new Pair<Failure, float>(() =>
+            possibleFailures.Add(new Pair<Failure, Pair<float, float>>(() =>
             {
                 if (FlightGlobals.ActiveVessel.parts.Count > 0)
                 {
@@ -42,11 +45,11 @@ namespace KGSS_Scenario
                     FlightGlobals.ActiveVessel.parts[random.Next(0, FlightGlobals.ActiveVessel.parts.Count)].enabled = false;
                 }
 
-            }, 0.1f));
+            }, new Pair<float, float>(0.05f, 0f)));
 
 
             //Intermittent part enable.
-            possibleFailures.Add(new Pair<Failure, float>(() =>
+            possibleFailures.Add(new Pair<Failure, Pair<float, float>>(() =>
             {
                 if (FlightGlobals.ActiveVessel.parts.Count > 0)
                 {
@@ -54,7 +57,7 @@ namespace KGSS_Scenario
                     FlightGlobals.ActiveVessel.parts[random.Next(0, FlightGlobals.ActiveVessel.parts.Count)].enabled = true;
                 }
 
-            }, 0.1f));
+            }, new Pair<float, float>(0.05f, 0f)));
         }
 
         #endregion
@@ -63,13 +66,32 @@ namespace KGSS_Scenario
 
         public void fixedUpdate()
         {
-            foreach(Pair<Failure, float> pair in possibleFailures)
+            adjustProbabilitiesBasedOnCraftSize();
+            potentiallyCauseFailure();
+        }
+
+        private void adjustProbabilitiesBasedOnCraftSize()
+        {
+            foreach (Pair<Failure,  Pair<float, float>> pair in possibleFailures)
             {
-                if (random.NextDouble() < pair.Second)
+                pair.Second.Second = pair.Second.First + (0.001f * FlightGlobals.ActiveVessel.parts.Count);
+                KGSSLogger.Log("Random Failure: " + pair.First.ToString() + " probability set to: " + pair.Second.Second);
+            }
+        }
+
+        private void potentiallyCauseFailure()
+        {
+            if (!FlightGlobals.ActiveVessel.Landed)
+            {
+                KGSSLogger.Log("Random Failure: Checking for failure");
+                foreach (Pair<Failure, Pair<float, float>> pair in possibleFailures)
                 {
-                    pair.First();
-                    //Limit to one failure per update cycle
-                    break;
+                    if (random.NextDouble() < pair.Second.Second)
+                    {
+                        pair.First();
+                        //Limit to one failure per update cycle
+                        break;
+                    }
                 }
             }
         }
