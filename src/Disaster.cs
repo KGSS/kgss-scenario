@@ -1,52 +1,49 @@
 ﻿using System.Collections;
 using UnityEngine;
 
-namespace KGSS_Scenario
+class Disaster : TutorialScenario
 {
-    class Disaster : TutorialScenario
+    protected override void OnAssetSetup()
     {
-        protected override void OnAssetSetup()
+        instructorPrefabName = "Instructor_Gene";
+    }
+
+    TutorialPage opening;
+
+    protected override void OnTutorialSetup()
+    {
+        instructor.name = "Togfox";
+
+        #region opening
+
+        opening = new TutorialPage("opening");
+        opening.windowTitle = "[KGSS] Mission";
+        opening.OnEnter = (KFSMState st) =>
         {
-            instructorPrefabName = "Instructor_Gene";
-        }
-
-        TutorialPage opening, conclusion;
-
-        protected override void OnTutorialSetup()
+            instructor.StopRepeatingEmote();
+            InputLockManager.SetControlLock((ControlTypes.STAGING | ControlTypes.THROTTLE), "UnamedLock");
+        };
+        opening.OnDrawContent = () =>
         {
-            instructor.name = "Togfox";
+            instructor.PlayEmote(instructor.anim_idle_sigh);
+            GUILayout.Label("This is mission control to ...");
 
-            #region opening
+            if (GUILayout.Button("Next")) Tutorial.GoToNextPage();
+        };
+        Tutorial.AddPage(opening);
 
-            opening = new TutorialPage("opening");
-            opening.windowTitle = "[KGSS] Mission";
-            opening.OnEnter = (KFSMState st) =>
-            {
-                instructor.StopRepeatingEmote();
-                InputLockManager.SetControlLock((ControlTypes.STAGING | ControlTypes.THROTTLE), "UnamedLock");
-            };
-            opening.OnDrawContent = () =>
-            {
-                instructor.PlayEmote(instructor.anim_idle_sigh);
-                GUILayout.Label("This is mission control to ...");
+        #endregion
 
-                if (GUILayout.Button("Next")) Tutorial.GoToNextPage();
-            };
-            Tutorial.AddPage(opening);
+        Tutorial.StartTutorial(opening);
+    }
 
-            #endregion
+    void OnDestroy()
+    {
+        //InputLockManager.RemoveControlLock("UnamedLock");
+    }
 
-            Tutorial.StartTutorial(opening);
-        }
-
-        void OnDestroy()
-        {
-            //InputLockManager.RemoveControlLock("UnamedLock");
-        }
-
-        protected void failureDecouple()
-        {
-            FlightGlobals.ActiveVessel.parts[0].decouple();
-        }
+    protected void failureDecouple()
+    {
+        FlightGlobals.ActiveVessel.parts[0].decouple();
     }
 }
