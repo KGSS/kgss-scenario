@@ -9,9 +9,9 @@ class KGSSLogger
 {
     public static void Log(String s)
     {
-//#if (DEBUG)
+#if (DEBUG)
         Debug.Log(s);
-//#endif
+#endif
     }
 
     public static string FormatClassName(string s)

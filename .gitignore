@@ -5,3 +5,4 @@ Properties
 *.csproj
 screenshots
 *.suo
+*.pdb
