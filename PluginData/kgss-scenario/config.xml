@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<config>
+    <int name="START_FAILURE_DELAY_SECONDS">10</int>
+    <int name="FAILURE_INTERVAL_SECONDS">10</int>
+    <vector2d name="FAILURE_PROBABILITY">
+      <x>0.5</x>
+      <y>0</y>
+    </vector2d>
+    <int name="DEFAULT_INTERMITTENT_EXPLOSION_WEIGHT">1</int>
+  <string name="INTERMITTENT_EXPLOSION_PART_SPECIFIC">a: b: v s: c</string>
+</config>

@@ -11,14 +11,14 @@ class FailureGenerator
     //The pair of probabilities represent the base probability, and the probability adjusted based on craft metrics.
     protected List<FailureDescriptor> possibleFailures = null;
 
-    protected float failureProbability = 0;
-    protected float baseFailureProbability = 0;
+    protected double failureProbability = 0;
+    protected double baseFailureProbability = 0;
 
     protected ProbabilityEventGenerator probabilityEventGenerator = null;
 
     #region Initilisation
 
-    public FailureGenerator(float failureProbability, ref List<FailureDescriptor> possibleFailures, ref Random random)
+    public FailureGenerator(double failureProbability, ref List<FailureDescriptor> possibleFailures, ref Random random)
     {
         this.failureProbability = failureProbability;
         this.baseFailureProbability = failureProbability;
