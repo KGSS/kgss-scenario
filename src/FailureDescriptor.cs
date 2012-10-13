@@ -8,13 +8,12 @@ class FailureDescriptor
     public delegate void Failure();
 
     public Failure failure {get; set;}
-    public float baseProbability { get; set; }
-    public float probability { get; set; }
+    public int weight { get; set; }
 
-    public FailureDescriptor(Failure failure, float baseProbability)
+    public FailureDescriptor(Failure failure, int weight)
     {
         this.failure = failure;
-        this.baseProbability = baseProbability;
+        this.weight = weight;
     }
 }
 

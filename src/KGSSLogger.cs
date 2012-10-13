@@ -18,5 +18,19 @@ class KGSSLogger
     {
         return "[" + s + "]";
     }
+
+    public static string ListToString(List<int> l)
+    {
+        string ret = "[";
+        foreach (int i in l)
+        {
+            ret +=  i + ",";
+        }
+
+        ret = ret.Remove(ret.LastIndexOf(","));
+        ret += "]";
+
+        return ret;
+    }
 }
 

@@ -4,56 +4,40 @@ using System.Text;
 
 
 class FailureGenerator
-{ 
-    protected static Random random = new Random();
+{
 
+    protected Random random = null;
     //Store the failure function and the associated probabilities in a pair.
     //The pair of probabilities represent the base probability, and the probability adjusted based on craft metrics.
-    protected List<FailureDescriptor> possibleFailures = new List<FailureDescriptor>();
+    protected List<FailureDescriptor> possibleFailures = null;
+
+    protected float failureProbability = 0;
+    protected float baseFailureProbability = 0;
+
+    protected ProbabilityEventGenerator probabilityEventGenerator = null;
 
     #region Initilisation
 
-    public FailureGenerator()
+    public FailureGenerator(float failureProbability, ref List<FailureDescriptor> possibleFailures, ref Random random)
     {
-        initialiseFailures();
+        this.failureProbability = failureProbability;
+        this.baseFailureProbability = failureProbability;
+        this.possibleFailures = possibleFailures;
+        this.random = random;
+        
+        initialiseProbabilityEventGenerator();
     }
 
-    private void initialiseFailures()
+    private void initialiseProbabilityEventGenerator()
     {
-        //Intermittent part explosion.
-        possibleFailures.Add(new FailureDescriptor(() =>
+        List<int> weights = new List<int>();
+
+        foreach(FailureDescriptor fd in possibleFailures)
         {
-            if (FlightGlobals.ActiveVessel.parts.Count > 0)
-            {
-                KGSSLogger.Log("Random Failure: Intermittent explosion");
+            weights.Add(fd.weight);
+        }
 
-                FlightGlobals.ActiveVessel.parts[random.Next(0, FlightGlobals.ActiveVessel.parts.Count)].explode();
-            }
-
-        }, 0.05f));
-
-        //Intermittent part disable.
-        possibleFailures.Add(new FailureDescriptor(() =>
-        {
-            if (FlightGlobals.ActiveVessel.parts.Count > 0)
-            {
-                KGSSLogger.Log("Random Failure: Intermittent disable");
-
-                FlightGlobals.ActiveVessel.parts[random.Next(0, FlightGlobals.ActiveVessel.parts.Count)].enabled = false;
-            }
-
-        }, 0.05f));
-
-        //Intermittent part enable.
-        possibleFailures.Add(new FailureDescriptor(() =>
-        {
-            if (FlightGlobals.ActiveVessel.parts.Count > 0)
-            {
-                KGSSLogger.Log("Random Failure: Intermittent enable");
-                FlightGlobals.ActiveVessel.parts[random.Next(0, FlightGlobals.ActiveVessel.parts.Count)].enabled = true;
-            }
-
-        }, 0.05f));
+        probabilityEventGenerator = new ProbabilityEventGenerator(weights, random);
     }
 
     #endregion
@@ -62,32 +46,26 @@ class FailureGenerator
 
     public void fixedUpdate()
     {
-        adjustProbabilitiesBasedOnCraftSize();
+        adjustFailureProbabilityBasedOnCraftSize();
         potentiallyCauseFailure();
     }
 
-    private void adjustProbabilitiesBasedOnCraftSize()
+    private void adjustFailureProbabilityBasedOnCraftSize()
     {
-        foreach (FailureDescriptor pair in possibleFailures)
-        {
-            pair.probability = pair.baseProbability + (0.001f * FlightGlobals.ActiveVessel.parts.Count);
-            KGSSLogger.Log("Random Failure: " + pair.failure.ToString() + " probability set to: " + pair.probability);
-        }
+        //Adjust failure rate based on the number of parts in the vessel.
+        failureProbability = baseFailureProbability + (0.001f * FlightGlobals.ActiveVessel.parts.Count);
+        KGSSLogger.Log("Failure Generator - Failure probability set to: " + failureProbability);
     }
 
     private void potentiallyCauseFailure()
     {
         if (!FlightGlobals.ActiveVessel.Landed)
         {
-            KGSSLogger.Log("Random Failure: Checking for failure");
-            foreach (FailureDescriptor pair in possibleFailures)
+            KGSSLogger.Log("Failure Generator - Checking for failure");
+
+            if (random.NextDouble() < failureProbability)
             {
-                if (random.NextDouble() < pair.probability)
-                {
-                    pair.failure();
-                    //Limit to one failure per update cycle
-                    break;
-                }
+                possibleFailures[probabilityEventGenerator.generateEvent()].failure();
             }
         }
     }
