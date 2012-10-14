@@ -84,11 +84,11 @@ class RandomFailure : TutorialScenario
 
     private void initialiseIntermittentDetatch(ref List<FailureDescriptor> possibleFailures)
     {
-        intermittentFailureHeirachyBuilder(ref possibleFailures, "INTERMITTENT_DETATCH",
+        intermittentFailureHeirachyBuilder(ref possibleFailures, "INTERMITTENT_DETACH",
         (ref Part part) =>
         {
             part.DetachFromParent();
-        }, "detatch");
+        }, "detach");
     }
 
     private void initialiseIntermittentFuelLeak(ref List<FailureDescriptor> possibleFailures)
