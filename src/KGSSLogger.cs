@@ -3,8 +3,6 @@ using System.Collections.Generic;
 using System.Text;
 using UnityEngine;
 
-
-
 class KGSSLogger
 {
     public static void Log(String s)
@@ -31,6 +29,14 @@ class KGSSLogger
         ret += "]";
 
         return ret;
+    }
+
+    public static void printParts(List<Part> parts)
+    {
+        foreach (Part part in parts)
+        {
+            Log(part.partInfo.name);
+        }
     }
 }
 

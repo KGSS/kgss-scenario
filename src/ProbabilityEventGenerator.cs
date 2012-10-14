@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Text;
 
-
 class ProbabilityEventGenerator
 {
     private List<int> cdf = new List<int>();
@@ -42,7 +41,14 @@ class ProbabilityEventGenerator
             i++;
         }
 
+        if (cdf[cdf.Count - 1] == 0)
+        {
+            KGSSLogger.Log("Probability Event Generator - CDF 0");
+            i = -1;
+        }
+
         KGSSLogger.Log("ProbabilityEventGenerator - Event selected: " + i);
+
         return i;
     }
 }

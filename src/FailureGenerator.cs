@@ -13,19 +13,19 @@ class FailureGenerator
 
     protected double failureProbability = 0;
     protected double baseFailureProbability = 0;
+    protected double partsPenaltyFactor = 0;
 
     protected ProbabilityEventGenerator probabilityEventGenerator = null;
-
+    
     #region Initilisation
 
-    public FailureGenerator(double failureProbability, ref List<FailureDescriptor> possibleFailures, ref Random random)
+    public FailureGenerator(double failureProbability, double partsPenaltyFactor, ref List<FailureDescriptor> possibleFailures, ref Random random)
     {
         this.failureProbability = failureProbability;
         this.baseFailureProbability = failureProbability;
         this.possibleFailures = possibleFailures;
         this.random = random;
-        
-        initialiseProbabilityEventGenerator();
+        this.partsPenaltyFactor = partsPenaltyFactor;
     }
 
     private void initialiseProbabilityEventGenerator()
@@ -46,6 +46,7 @@ class FailureGenerator
 
     public void fixedUpdate()
     {
+        garbageCollectFailures();
         adjustFailureProbabilityBasedOnCraftSize();
         potentiallyCauseFailure();
     }
@@ -53,7 +54,13 @@ class FailureGenerator
     private void adjustFailureProbabilityBasedOnCraftSize()
     {
         //Adjust failure rate based on the number of parts in the vessel.
-        failureProbability = baseFailureProbability + (0.001f * FlightGlobals.ActiveVessel.parts.Count);
+        failureProbability = baseFailureProbability + (partsPenaltyFactor * FlightGlobals.ActiveVessel.parts.Count);
+
+        if (failureProbability > 1)
+        {
+            failureProbability = 1;
+        }
+
         KGSSLogger.Log("Failure Generator - Failure probability set to: " + failureProbability);
     }
 
@@ -65,8 +72,31 @@ class FailureGenerator
 
             if (random.NextDouble() < failureProbability)
             {
-                possibleFailures[probabilityEventGenerator.generateEvent()].failure();
+                int eventIndex = probabilityEventGenerator.generateEvent();
+
+                if(eventIndex >= 0)
+                {
+                    possibleFailures[eventIndex].failure(
+                        possibleFailures[eventIndex]);
+                }
             }
+        }
+    }
+
+    private void garbageCollectFailures()
+    {
+        if (!FlightGlobals.ActiveVessel.Landed)
+        {
+            foreach (FailureDescriptor fd in possibleFailures)
+            {
+                if (fd.weight > 0)
+                {
+                    fd.failureGarbage(fd);
+                }
+            }
+
+            //Update the event generator to reflect the removal of any failures.
+            initialiseProbabilityEventGenerator();
         }
     }
         
