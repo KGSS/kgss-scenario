@@ -20,20 +20,31 @@ class RandomFailure : TutorialScenario
         
     protected override void OnTutorialSetup()
     {
-        config.load();
+        try
+        {
+            config.load();
 
-        KGSSLogger.printParts(FlightGlobals.ActiveVessel.parts);
-            
-        initialiseRandomNumbers();
-        initialiseDefaultGarabageCollection();
-        List<FailureDescriptor> possibleFailures = new List<FailureDescriptor>();
-        initialiseFailures(ref possibleFailures);
-        failureGenerator = new FailureGenerator(
-            config.GetValue<Vector3d>("FAILURE_PROBABILITY").x, 
-            config.GetValue<Vector3d>("PARTS_PENATLY_FACTOR").x, ref possibleFailures, ref random);
- 
-        this.InvokeRepeating("fixedUpdateFailureGenerator", 
-            config.GetValue<int>("START_FAILURE_DELAY_SECONDS"), config.GetValue<int>("FAILURE_INTERVAL_SECONDS"));
+            KGSSLogger.printParts(FlightGlobals.ActiveVessel.parts);
+
+            initialiseRandomNumbers();
+        
+            initialiseDefaultGarabageCollection();
+         
+            List<FailureDescriptor> possibleFailures = new List<FailureDescriptor>();
+            initialiseFailures(ref possibleFailures);
+
+            failureGenerator = new FailureGenerator(
+                config.GetValue<Vector3d>("FAILURE_PROBABILITY").x,
+                config.GetValue<Vector3d>("PARTS_PENATLY_FACTOR").x, ref possibleFailures, ref random);
+
+            this.InvokeRepeating("fixedUpdateFailureGenerator",
+               config.GetValue<int>("START_FAILURE_DELAY_SECONDS"), config.GetValue<int>("FAILURE_INTERVAL_SECONDS"));
+        }
+        catch (Exception e)
+        {
+            KGSSLogger.Out(e.Message); 
+            KGSSLogger.Out(e.StackTrace); 
+        }
     }
 
     private void initialiseRandomNumbers()
@@ -68,8 +79,9 @@ class RandomFailure : TutorialScenario
 
     private void initialiseFailures(ref List<FailureDescriptor> possibleFailures)
     {
+        KGSSLogger.Log(possibleFailures.ToString());
         initialiseIntermittentExplosions(ref possibleFailures);
-        initialiseIntermittentDetatch(ref possibleFailures);
+        //initialiseIntermittentDetatch(ref possibleFailures);
         initialiseIntermittentFuelLeak(ref possibleFailures);
     }
 
@@ -87,7 +99,7 @@ class RandomFailure : TutorialScenario
         intermittentFailureHeirachyBuilder(ref possibleFailures, "INTERMITTENT_DETACH",
         (ref Part part) =>
         {
-            part.DetachFromParent();
+            //part.DetachFromParent();
         }, "detach");
     }
 
@@ -144,15 +156,17 @@ class RandomFailure : TutorialScenario
         FailureDescriptor.Failure typeFailure, FailureDescriptor.FailureGarbage typeGarbageCollection, string typeName,
         FailureDescriptor.Failure partFailure, FailureDescriptor.FailureGarbage partGarbageCollection, string partName)
     {
-        string[] classes = config.GetValue<string>(failureTag + "_MAP").Split(';');
-
+        String unsplitClasses = config.GetValue<String>(failureTag + "_MAP");
+        string[] classes = unsplitClasses.Split(';');
+        
         for (int i = 0; i < classes.Length; i++)
         {
             string[] splitC = classes[i].Split(':');
+        
             switch (splitC[0])
             {
                 case "BASE":
-
+                
                     possibleFailures.Add(new FailureDescriptor(
                         baseFailure,
                         baseGarbageCollection,
@@ -164,7 +178,7 @@ class RandomFailure : TutorialScenario
                     break;
 
                 case "TYPE":
-
+              
                     possibleFailures.Add(new FailureDescriptor(
                         typeFailure,
                         typeGarbageCollection,
@@ -176,6 +190,7 @@ class RandomFailure : TutorialScenario
                     break;
 
                 case "PART":
+              
                     possibleFailures.Add(new FailureDescriptor(
                         partFailure,
                         partGarbageCollection,
@@ -237,25 +252,25 @@ class RandomFailure : TutorialScenario
         switch (i)
         {
             case 0:
-                return PartCategories.commandCtrl;
+                return PartCategories.Control;
 
             case 1:
-                return PartCategories.crew;
+                return PartCategories.none;
 
             case 2:
-                return PartCategories.decals;
+                return PartCategories.none;
 
             case 4:
-                return PartCategories.pods;
+                return PartCategories.Pods;
 
             case 5:
-                return PartCategories.propulsion;
+                return PartCategories.Propulsion;
 
             case 6: 
-                return PartCategories.structural;
+                return PartCategories.Structural;
 
-            case 7: 
-                return PartCategories.utility;
+            case 7:
+                return PartCategories.Utility;
 
             default:
                 return PartCategories.none;

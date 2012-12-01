@@ -12,6 +12,11 @@ class KGSSLogger
 #endif
     }
 
+    public static void Out(String s)
+    {
+        Debug.Log(s);
+    }
+
     public static string FormatClassName(string s)
     {
         return "[" + s + "]";
