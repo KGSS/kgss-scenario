@@ -2,10 +2,8 @@
 using System.Collections.Generic;
 using System.Text;
 
-
 class FailureGenerator
 {
-
     protected Random random = null;
     //Store the failure function and the associated probabilities in a pair.
     //The pair of probabilities represent the base probability, and the probability adjusted based on craft metrics.
