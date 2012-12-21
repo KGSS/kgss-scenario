@@ -1,8 +1,8 @@
 GAME
 {
 	version = 0.18.0
-	Title = [KGSS] Nanobots Awry 
-	Description = Due to an incident at the Kerbal Space Centre Labs, electronics and metal hungry nanobots have been unleashed upon the facility.  As a result of this everything has been malfunctioning even more so than usual.  Will the space program still be able to operate under these challenging conditions?
+	Title = [KGSS] Neutrinos!
+	Description = Particle science comes to KSP. A new particle, the neutrino, has been discovered in the KSP universe. The KGSS has built a neutrino detector and has detected the presence of this new particle on Kerbin. The KGSS is yet to understand the nature of the neutrino or its source. Any researchers wishing to discover the source of neutrino's are encouraged to tape the Neutrino Detector (You will find this under the Science Tab in the VAB/SPH) to the side of a ground vehicle, probe or orbital satellite and help determine exactly where the neutrino's are coming from.
 	Mode = 0
 	Status = 1
 	scene = 5
@@ -57,7 +57,6 @@ GAME
 	}
 	SCENARIO
 	{
-		name = RandomFailure
 		scene = 7
 	}
 }
