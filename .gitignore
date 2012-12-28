@@ -1,9 +1,4 @@
-*.sln
 bin
 obj
-Properties
-*.csproj
+publish
 screenshots
-*.suo
-*.pdb
-
