@@ -1,11 +1,12 @@
-﻿using System;
+﻿//Author: Richard Bunt
+using System;
 using System.Collections.Generic;
 using System.Text;
 
 class ProbabilityEventGenerator
 {
-    private List<int> cdf = new List<int>();
-    Random random = null;
+    protected List<int> cdf = new List<int>();
+    protected Random random = null;
 
     public ProbabilityEventGenerator(List<int> weights, Random random)
     {
@@ -29,7 +30,7 @@ class ProbabilityEventGenerator
         KGSSLogger.Log("ProbabilityEventGenerator - cdf:" + KGSSLogger.ListToString(cdf));
     }
 
-    public int generateEvent()
+    public virtual int generateEvent()
     {
         double selection = random.NextDouble() * cdf[cdf.Count - 1];
         KGSSLogger.Log("ProbabilityEventGenerator - Raw event generated: " + selection);

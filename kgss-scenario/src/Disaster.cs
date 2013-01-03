@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿//Author: Richard Bunt
+using System.Collections;
 using UnityEngine;
 
 class Disaster : TutorialScenario

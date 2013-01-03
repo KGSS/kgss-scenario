@@ -1,35 +1,98 @@
-﻿using System;
+﻿//Author: Richard Bunt
+
+using System;
 using System.Collections.Generic;
 using System.Text;
-
+using KSP.IO;
 
 class NeutrinoSensorModule : PartModule
 {
+    private CelestialBody sun, jool = null;
+
     [KSPField(guiActive=true, guiName="Value")]
-    string  reading = "";
+    string reading = "";
+
+#if (DEBUG)
+    [KSPField(guiActive = true, guiName = "LOS")]
+    string lineOfSight = "";
+#endif
 
     public float powerConsumption = 0.05f;
+    Random random = null;
+    float timeElapsed = 0;
 
-    public override void OnUpdate()
+    //Neutrino function parameters
+    PluginConfiguration config = PluginConfiguration.CreateForType<NeutrinoSensorModule>();
+
+    Vector3d l, d, s ,sm, jm, j, b, c, sd, jd;
+
+    ProbabilityEventGenerator sunSolar, joolSolar;
+
+    public override void OnStart(PartModule.StartState state)
     {
-        if (getDeployed())
-        {
-            float requiredPower = powerConsumption * TimeWarp.deltaTime;
-            float availPower = part.RequestResource("ElectricCharge", requiredPower);
+        sun = getBodyByString("Sun");
+        jool = getBodyByString("Jool");
+        readFunctionParameters();
+        random = new Random(System.DateTime.Now.Second);
+        sunSolar = new SolarFlareGenerator(new List<int> { (int)s.x, (int)s.y, (int)s.z }, random, sd.x, sd.y);
+        joolSolar = new SolarFlareGenerator(new List<int> { (int)j.x, (int)j.y, (int)j.z }, random, jd.x, jd.y);
 
-            if (availPower < requiredPower)
+        base.OnStart(state);
+    }
+
+    public override void  OnUpdate()
+    {
+        if (timeElapsed > c.x)
+        {
+            timeElapsed = 0;
+
+            if (getDeployed())
             {
-                reading = "Not enough power";
+                //Power code from olex
+                float requiredPower = powerConsumption * TimeWarp.deltaTime;
+                float availPower = part.RequestResource("ElectricCharge", requiredPower);
+
+                if (availPower < requiredPower)
+                {
+                    reading = "Not enough power";
+                }
+                else
+                {
+                    reading = neutrinoFunction();
+                }
             }
             else
             {
-                reading = neutrinoFunction();
+                reading = "Dish not deployed";
             }
         }
         else
         {
-            reading = "Dish not deployed";
+           timeElapsed += TimeWarp.deltaTime;
         }
+
+        base.OnUpdate();
+    }
+
+    public string getReadingText()
+    {
+        return reading;
+    }
+
+    private void readFunctionParameters()
+    {
+        config.load();
+
+        l = config.GetValue<Vector3d>("l");
+        d = config.GetValue<Vector3d>("d");
+        s = config.GetValue<Vector3d>("s");
+        j = config.GetValue<Vector3d>("j");
+        b = config.GetValue<Vector3d>("b");
+        c = config.GetValue<Vector3d>("c");
+        sm = config.GetValue<Vector3d>("sm");
+        jm = config.GetValue<Vector3d>("jm");
+        sd = config.GetValue<Vector3d>("sd");
+        jd = config.GetValue<Vector3d>("jd");
     }
 
     private bool getDeployed()
@@ -40,21 +103,94 @@ class NeutrinoSensorModule : PartModule
             {
                 ModuleAnimateGeneric anim = (ModuleAnimateGeneric)module;
 
-                if (anim.status.Equals("Fixed"))
+                if (anim.Progress == 1)
                 {
                     return true;
                 }
             }
         }
 
-        return false;
+        return false ;
     }
 
     private string neutrinoFunction()
     {
-        int neutrinos = 0;
+        double neutrinos = 0;
+        bool sunLineOfSight = isLineOfSight(sun.position, vessel.GetWorldPos3D()), 
+             joolLineOfSight = isLineOfSight(jool.position, vessel.GetWorldPos3D());
 
-        return neutrinos.ToString() + " neutrinos / s";
+#if (DEBUG)
+        lineOfSight = sunLineOfSight.ToString();
+#endif
+
+        neutrinos =
+            ((sunLineOfSight ? l.x : l.y) * (d.x / Vector3d.Distance(sun.position, vessel.GetWorldPos3D())) * sourceEventToContribution(sunSolar, sm)) +
+            ((joolLineOfSight ? l.x : l.y) * (d.x / Vector3d.Distance(jool.position, vessel.GetWorldPos3D())) * sourceEventToContribution(joolSolar, jm)) +
+            backgroundContribution() +
+            b.z;
+
+        return Math.Round(neutrinos, 2).ToString("E3") + " neutrinos / s";
+    }
+
+    private double backgroundContribution()
+    {
+        return b.x + (random.NextDouble() * (b.y - b.x));
+    }
+
+    private double sourceEventToContribution(ProbabilityEventGenerator p, Vector3d m)
+    {
+        int e = p.generateEvent();
+
+        switch(e)
+        {
+            case 0:
+                KGSSLogger.Log("Neutrino Sensor Module - No Flare");
+                return m.x; 
+            case 1:
+                KGSSLogger.Log("Neutrino Sensor Module - Small Flare");
+                return m.y;
+            case 2:
+                KGSSLogger.Log("Neutrino Sensor Module - Large Flare");
+                return m.z;
+        }
+
+        return 1;
+    }
+
+    //Line of sight code from JDP
+    private bool isLineOfSight(Vector3d a, Vector3d b)
+    {
+        foreach (CelestialBody referenceBody in FlightGlobals.Bodies)
+        {
+            Vector3d bodyFromA = referenceBody.position - a;
+            Vector3d bFromA = b - a;
+            if (Vector3d.Dot(bodyFromA, bFromA) > 0)
+            {
+                Vector3d bFromAnorm = bFromA.normalized;
+                if (Vector3d.Dot(bodyFromA, bFromAnorm) < bFromA.magnitude)
+                { // check lateral offset from line between b and a
+                    Vector3d lateralOffset = bodyFromA - Vector3d.Dot(bodyFromA, bFromAnorm) * bFromAnorm;
+                    if (lateralOffset.magnitude < (referenceBody.Radius - 5))
+                    {
+                        return false;
+                    }
+                }
+            }
+        }
+        return true;
+    }
+
+    private CelestialBody getBodyByString(string body)
+    {
+        foreach (CelestialBody referenceBody in FlightGlobals.Bodies)
+        {
+            if (referenceBody.GetName().Equals(body))
+            {
+                return referenceBody;
+            }
+        }
+
+        return null;
     }
 }
 

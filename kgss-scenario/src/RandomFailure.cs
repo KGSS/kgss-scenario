@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿//Author: Richard Bunt
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using KSP.IO;

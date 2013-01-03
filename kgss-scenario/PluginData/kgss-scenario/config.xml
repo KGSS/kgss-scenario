@@ -27,4 +27,54 @@
     <int name="INTERMITTENT_FUEL_LEAK_BASE_WEIGHT">0</int>
     <int name="INTERMITTENT_FUEL_LEAK_fuelTank_WEIGHT">1</int>
     <int name="INTERMITTENT_FUEL_LEAK_fuelTank1-2_WEIGHT">2</int>
+    <vector3d name="l">
+      <x>1.001</x>
+      <y>1</y>
+      <z>0</z>
+    </vector3d>
+    <vector3d name="d">
+      <x>100000000000000</x>
+      <y>0.5</y>
+      <z>0</z>
+    </vector3d>
+    <vector3d name="s">
+      <x>40</x>
+      <y>2</y>
+      <z>1</z>
+    </vector3d>
+    <vector3d name="sm">
+      <x>1</x>
+      <y>2</y>
+      <z>6</z>
+    </vector3d>
+    <vector3d name="j">
+      <x>40</x>
+      <y>2</y>
+      <z>1</z>
+    </vector3d>
+    <vector3d name="jm">
+      <x>1</x>
+      <y>2</y>
+      <z>4</z>
+    </vector3d>
+    <vector3d name="b">
+      <x>2</x>
+      <y>3</y>
+      <z>1</z>
+    </vector3d>
+    <vector3d name="c">
+      <x>1</x>
+      <y>0</y>
+      <z>0</z>
+    </vector3d>
+  <vector3d name="sd">
+    <x>60</x>
+    <y>600</y>
+    <z>1</z>
+  </vector3d>
+  <vector3d name="jd">
+    <x>50</x>
+    <y>90</y>
+    <z>0</z>
+  </vector3d>
 </config>

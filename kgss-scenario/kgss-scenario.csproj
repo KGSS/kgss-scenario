@@ -29,7 +29,7 @@
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <LangVersion>3</LangVersion>
@@ -57,6 +57,7 @@
     <Compile Include="src\ProbabilityEventGenerator.cs" />
     <Compile Include="src\RandomFailure.cs" />
     <Compile Include="src\Disaster.cs" />
+    <Compile Include="src\SolarFlareGenerator.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="saves\scenarios\banners\Neutrinos.png" />
@@ -67,7 +68,6 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <None Include="COPYING" />
     <None Include="Parts\neutrinoDetector\model.mu" />
     <None Include="Parts\neutrinoDetector\model000.mbm" />
     <None Include="Parts\neutrinoDetector\part.cfg" />
@@ -88,7 +88,7 @@ copy "$(ProjectDir)saves\scenarios\banners\*.png" "$(ProjectDir)publish\saves\sc
 copy "$(ProjectDir)saves\scenarios\*.sfs" "$(ProjectDir)publish\saves\scenarios\*.sfs"
 copy "$(ProjectDir)PluginData\kgss-scenario\*.xml" "$(ProjectDir)publish\PluginData\kgss-scenario\*.xml"
 xcopy "$(ProjectDir)Parts\*" "$(ProjectDir)publish\Parts\*" /e /y /i /r
-copy  "$(ProjectDir)COPYING" "$(ProjectDir)publish\COPYING" 
+copy  "$(ProjectDir)..\COPYING" "$(ProjectDir)publish\COPYING" 
 </PostBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
