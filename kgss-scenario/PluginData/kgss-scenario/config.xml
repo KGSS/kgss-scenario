@@ -33,33 +33,33 @@
       <z>0</z>
     </vector3d>
     <vector3d name="d">
-      <x>100000000000000</x>
+      <x>-1</x>
       <y>0.5</y>
-      <z>0</z>
+      <z>0.00000001</z>
     </vector3d>
     <vector3d name="s">
-      <x>40</x>
+      <x>4</x>
       <y>2</y>
       <z>1</z>
     </vector3d>
     <vector3d name="sm">
-      <x>1</x>
-      <y>2</y>
-      <z>6</z>
+      <x>0.11</x>
+      <y>9</y>
+      <z>15</z>
     </vector3d>
     <vector3d name="j">
-      <x>40</x>
+      <x>2</x>
       <y>2</y>
       <z>1</z>
     </vector3d>
     <vector3d name="jm">
-      <x>1</x>
-      <y>2</y>
-      <z>4</z>
+      <x>0.1</x>
+      <y>5</y>
+      <z>11</z>
     </vector3d>
     <vector3d name="b">
       <x>2</x>
-      <y>3</y>
+      <y>3000</y>
       <z>1</z>
     </vector3d>
     <vector3d name="c">

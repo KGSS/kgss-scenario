@@ -17,7 +17,7 @@ class NeutrinoSensorModule : PartModule
     string lineOfSight = "";
 #endif
 
-    public float powerConsumption = 0.05f;
+    public float powerConsumption = 0.02f;
     Random random = null;
     float timeElapsed = 0;
 
@@ -124,8 +124,10 @@ class NeutrinoSensorModule : PartModule
 #endif
 
         neutrinos =
-            ((sunLineOfSight ? l.x : l.y) * (d.x / Vector3d.Distance(sun.position, vessel.GetWorldPos3D())) * sourceEventToContribution(sunSolar, sm)) +
-            ((joolLineOfSight ? l.x : l.y) * (d.x / Vector3d.Distance(jool.position, vessel.GetWorldPos3D())) * sourceEventToContribution(joolSolar, jm)) +
+            ((sunLineOfSight ? l.x : l.y) * (Math.Pow(Vector3d.Distance(sun.position, vessel.GetWorldPos3D()), d.x) 
+                * sourceEventToContribution(sunSolar, sm) * d.z))  +
+            ((joolLineOfSight ? l.x : l.y) * (Math.Pow(Vector3d.Distance(jool.position, vessel.GetWorldPos3D()), d.x) 
+                * sourceEventToContribution(joolSolar, jm) * d.z))  +
             backgroundContribution() +
             b.z;
 
