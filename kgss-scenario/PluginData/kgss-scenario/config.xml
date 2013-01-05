@@ -65,7 +65,7 @@
     <vector3d name="c">
       <x>1</x>
       <y>1</y>
-      <z>0</z>
+      <z>300</z>
     </vector3d>
   <vector3d name="sd">
     <x>60</x>

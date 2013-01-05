@@ -131,7 +131,19 @@ class NeutrinoSensorModule : PartModule
             backgroundContribution() +
             b.z;
 
-        return Math.Round(neutrinos, (int)c.y) + " neutrinos / s";
+
+        string formatted = "";
+
+        if (Math.Abs(neutrinos) > c.z)
+        {
+            formatted = neutrinos.ToString("E" + ((int)c.y).ToString());
+        }
+        else
+        {
+            formatted = Math.Round(neutrinos, (int)c.y).ToString();
+        }
+
+        return formatted + " neutrinos / s";
     }
 
     private double backgroundContribution()
