@@ -1,80 +1,80 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <config>
-    <int name="START_FAILURE_DELAY_SECONDS">10</int>
-    <int name="FAILURE_INTERVAL_SECONDS">10</int>
-    <vector3d name="FAILURE_PROBABILITY">
-      <x>0.5</x>
-      <y>0</y>
-      <z>0</z>
-    </vector3d>
-    <vector3d name="PARTS_PENATLY_FACTOR">
-      <x>0.001</x>
-      <y>0</y>
-      <z>0</z>
-    </vector3d>
-    <string name="INTERMITTENT_EXPLOSION_MAP">BASE;TYPE:6</string>
-    <int name="INTERMITTENT_EXPLOSION_BASE_WEIGHT">0</int>
-    <int name="INTERMITTENT_EXPLOSION_6_WEIGHT">1</int>
-    <string name="INTERMITTENT_DETACH_MAP">BASE;PART:fuelLine;PART:strutConnector;PART:tailfin;PART:winglet;PART:SmallGearBay;PART:smallCtrlSrf</string>
-    <int name="INTERMITTENT_DETACH_BASE_WEIGHT">0</int>
-    <int name="INTERMITTENT_DETACH_fuelLine_WEIGHT">3</int>
-    <int name="INTERMITTENT_DETACH_strutConnector_WEIGHT">3</int>
-    <int name="INTERMITTENT_DETACH_tailfin_WEIGHT">3</int>
-    <int name="INTERMITTENT_DETACH_winglet_WEIGHT">3</int>
-    <int name="INTERMITTENT_DETACH_SmallGearBay_WEIGHT">3</int>
-    <int name="INTERMITTENT_DETACH_smallCtrlSrf_WEIGHT">3</int>
-    <string name="INTERMITTENT_FUEL_LEAK_MAP">BASE;PART:fuelTank;PART:fuelTank1-2</string>
-    <int name="INTERMITTENT_FUEL_LEAK_BASE_WEIGHT">0</int>
-    <int name="INTERMITTENT_FUEL_LEAK_fuelTank_WEIGHT">1</int>
-    <int name="INTERMITTENT_FUEL_LEAK_fuelTank1-2_WEIGHT">2</int>
-    <vector3d name="l">
-      <x>1.001</x>
-      <y>1</y>
-      <z>0</z>
-    </vector3d>
-    <vector3d name="d">
-      <x>-1</x>
-      <y>0.5</y>
-      <z>0.00000001</z>
-    </vector3d>
-    <vector3d name="s">
-      <x>4</x>
-      <y>2</y>
-      <z>1</z>
-    </vector3d>
-    <vector3d name="sm">
-      <x>0.11</x>
-      <y>9</y>
-      <z>15</z>
-    </vector3d>
-    <vector3d name="j">
-      <x>2</x>
-      <y>2</y>
-      <z>1</z>
-    </vector3d>
-    <vector3d name="jm">
-      <x>0.1</x>
-      <y>5</y>
-      <z>11</z>
-    </vector3d>
-    <vector3d name="b">
-      <x>2</x>
-      <y>3000</y>
-      <z>1</z>
-    </vector3d>
-    <vector3d name="c">
-      <x>1</x>
-      <y>1</y>
-      <z>300</z>
-    </vector3d>
+  <int name="START_FAILURE_DELAY_SECONDS">10</int>
+  <int name="FAILURE_INTERVAL_SECONDS">10</int>
+  <vector3d name="FAILURE_PROBABILITY">
+    <x>0.5</x>
+    <y>0</y>
+    <z>0</z>
+  </vector3d>
+  <vector3d name="PARTS_PENATLY_FACTOR">
+    <x>0.001</x>
+    <y>0</y>
+    <z>0</z>
+  </vector3d>
+  <string name="INTERMITTENT_EXPLOSION_MAP">BASE;TYPE:6</string>
+  <int name="INTERMITTENT_EXPLOSION_BASE_WEIGHT">0</int>
+  <int name="INTERMITTENT_EXPLOSION_6_WEIGHT">1</int>
+  <string name="INTERMITTENT_DETACH_MAP">BASE;PART:fuelLine;PART:strutConnector;PART:tailfin;PART:winglet;PART:SmallGearBay;PART:smallCtrlSrf</string>
+  <int name="INTERMITTENT_DETACH_BASE_WEIGHT">0</int>
+  <int name="INTERMITTENT_DETACH_fuelLine_WEIGHT">3</int>
+  <int name="INTERMITTENT_DETACH_strutConnector_WEIGHT">3</int>
+  <int name="INTERMITTENT_DETACH_tailfin_WEIGHT">3</int>
+  <int name="INTERMITTENT_DETACH_winglet_WEIGHT">3</int>
+  <int name="INTERMITTENT_DETACH_SmallGearBay_WEIGHT">3</int>
+  <int name="INTERMITTENT_DETACH_smallCtrlSrf_WEIGHT">3</int>
+  <string name="INTERMITTENT_FUEL_LEAK_MAP">BASE;PART:fuelTank;PART:fuelTank1-2</string>
+  <int name="INTERMITTENT_FUEL_LEAK_BASE_WEIGHT">0</int>
+  <int name="INTERMITTENT_FUEL_LEAK_fuelTank_WEIGHT">1</int>
+  <int name="INTERMITTENT_FUEL_LEAK_fuelTank1-2_WEIGHT">2</int>
+  <vector3d name="l">
+    <x>1.001</x>
+    <y>1</y>
+    <z>0</z>
+  </vector3d>
+  <vector3d name="d">
+    <x>-1</x>
+    <y>0.5</y>
+    <z>100000000000000</z>
+  </vector3d>
+  <vector3d name="s">
+    <x>1</x>
+    <y>1</y>
+    <z>1</z>
+  </vector3d>
+  <vector3d name="sm">
+    <x>1</x>
+    <y>1</y>
+    <z>1</z>
+  </vector3d>
+  <vector3d name="j">
+    <x>1</x>
+    <y>1</y>
+    <z>1</z>
+  </vector3d>
+  <vector3d name="jm">
+    <x>0</x>
+    <y>0</y>
+    <z>0</z>
+  </vector3d>
+  <vector3d name="b">
+    <x>0</x>
+    <y>5</y>
+    <z>1</z>
+  </vector3d>
+  <vector3d name="c">
+    <x>1</x>
+    <y>0</y>
+    <z>999999</z>
+  </vector3d>
   <vector3d name="sd">
-    <x>60</x>
-    <y>600</y>
+    <x>1</x>
+    <y>1</y>
     <z>1</z>
   </vector3d>
   <vector3d name="jd">
-    <x>50</x>
-    <y>90</y>
-    <z>0</z>
+    <x>1</x>
+    <y>1</y>
+    <z>1</z>
   </vector3d>
 </config>
