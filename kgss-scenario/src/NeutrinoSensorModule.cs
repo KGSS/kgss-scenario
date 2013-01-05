@@ -131,7 +131,7 @@ class NeutrinoSensorModule : PartModule
             backgroundContribution() +
             b.z;
 
-        return Math.Round(neutrinos, 2).ToString("E3") + " neutrinos / s";
+        return Math.Round(neutrinos, (int)c.y) + " neutrinos / s";
     }
 
     private double backgroundContribution()
@@ -146,13 +146,10 @@ class NeutrinoSensorModule : PartModule
         switch(e)
         {
             case 0:
-                KGSSLogger.Log("Neutrino Sensor Module - No Flare");
                 return m.x; 
             case 1:
-                KGSSLogger.Log("Neutrino Sensor Module - Small Flare");
                 return m.y;
             case 2:
-                KGSSLogger.Log("Neutrino Sensor Module - Large Flare");
                 return m.z;
         }
 
