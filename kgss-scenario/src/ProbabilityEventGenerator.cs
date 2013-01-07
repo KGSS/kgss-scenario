@@ -16,7 +16,7 @@ class ProbabilityEventGenerator
 
     private void calculateCdf(List<int> weights)
     {
-        KGSSLogger.Log("ProbabilityEventGenerator - weights:" + KGSSLogger.ListToString(weights));
+        KGSSPluginLogger.Log("ProbabilityEventGenerator - weights:" + KGSSPluginLogger.ListToString(weights));
         if (weights.Count > 0)
         {
             cdf.Add(weights[0]);
@@ -27,13 +27,13 @@ class ProbabilityEventGenerator
             }
         }
 
-        KGSSLogger.Log("ProbabilityEventGenerator - cdf:" + KGSSLogger.ListToString(cdf));
+        KGSSPluginLogger.Log("ProbabilityEventGenerator - cdf:" + KGSSPluginLogger.ListToString(cdf));
     }
 
     public virtual int generateEvent()
     {
         double selection = random.NextDouble() * cdf[cdf.Count - 1];
-        KGSSLogger.Log("ProbabilityEventGenerator - Raw event generated: " + selection);
+        KGSSPluginLogger.Log("ProbabilityEventGenerator - Raw event generated: " + selection);
         
         int i = 0;
 
@@ -44,11 +44,11 @@ class ProbabilityEventGenerator
 
         if (cdf[cdf.Count - 1] == 0)
         {
-            KGSSLogger.Log("Probability Event Generator - CDF 0");
+            KGSSPluginLogger.Log("Probability Event Generator - CDF 0");
             i = -1;
         }
 
-        KGSSLogger.Log("ProbabilityEventGenerator - Event selected: " + i);
+        KGSSPluginLogger.Log("ProbabilityEventGenerator - Event selected: " + i);
 
         return i;
     }

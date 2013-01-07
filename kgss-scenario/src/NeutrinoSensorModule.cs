@@ -169,7 +169,7 @@ class NeutrinoSensorModule : PartModule
     }
 
     //Line of sight code from JDP
-    private bool isLineOfSight(Vector3d a, Vector3d b)
+    public static bool isLineOfSight(Vector3d a, Vector3d b)
     {
         foreach (CelestialBody referenceBody in FlightGlobals.Bodies)
         {

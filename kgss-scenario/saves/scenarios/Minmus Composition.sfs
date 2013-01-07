@@ -1,0 +1,757 @@
+GAME
+{
+	version = 0.18.2
+	Title = [KGSS] Minmus Composition 
+	Description = The KGSS wishes to understand the physical and chemical properties of the ice that covers Minmus. Countless probes and rovers have been sent to the surface for samples, but this allows only for a surface analysis. Attach an impact probe onto your craft (You will find this under the Science Tab in the VAB/SPH) and crash it into the surface. This will allow the X-ray satellite in Kerbin orbit to image the resulting dust cloud. The success of the mission will vary based on the probes velocity, and the distance from the satellite at the time of impact.
+	Mode = 0
+	Status = 1
+	scene = 5
+	PARAMETERS
+	{
+		FLIGHT
+		{
+			CanQuickSave = True
+			CanQuickLoad = True
+			CanAutoSave = True
+			CanUseMap = True
+			CanSwitchVesselsNear = True
+			CanSwitchVesselsFar = True
+			CanTimeWarpHigh = True
+			CanTimeWarpLow = True
+			CanEVA = True
+			CanIVA = True
+			CanBoard = True
+			CanRestart = True
+			CanLeaveToEditor = True
+			CanLeaveToTrackingStation = True
+			CanLeaveToSpaceCenter = True
+			CanLeaveToMainMenu = True
+		}
+		EDITOR
+		{
+			CanSave = True
+			CanLoad = True
+			CanStartNew = True
+			CanLaunch = True
+			CanLeaveToSpaceCenter = True
+			CanLeaveToMainMenu = True
+			startUpMode = 0
+			craftFileToLoad = 
+		}
+		TRACKINGSTATION
+		{
+			CanFlyVessel = True
+			CanAbortVessel = True
+			CanLeaveToSpaceCenter = True
+			CanLeaveToMainMenu = False
+		}
+		SPACECENTER
+		{
+			CanGoInVAB = True
+			CanGoInSPH = True
+			CanGoInTrackingStation = True
+			CanLaunchAtPad = True
+			CanLaunchAtRunway = True
+			CanLeaveToMainMenu = True
+		}
+	}
+	FLIGHTSTATE
+	{
+		version = 0.18.2
+		UT = 13109132.2782335
+		activeVessel = 0
+		CREW
+		{
+			name = Jebediah Kerman
+			brave = 0.5
+			dumb = 0.5
+			badS = True
+			state = 1
+			ToD = 7663.07999999987
+			idx = 0
+		}
+		CREW
+		{
+			name = Bill Kerman
+			brave = 0.5
+			dumb = 0.8
+			badS = False
+			state = 1
+			ToD = 13100736.3688264
+			idx = 1
+		}
+		CREW
+		{
+			name = Bob Kerman
+			brave = 0.3
+			dumb = 0.1
+			badS = False
+			state = 0
+			ToD = 7838.27999999971
+			idx = 1
+		}
+		CREW
+		{
+			name = Gregsy Kerman
+			brave = 0.4655374
+			dumb = 0.7172016
+			badS = False
+			state = 0
+			ToD = 7844.5799999997
+			idx = 2
+		}
+		CREW
+		{
+			name = Dillorf Kerman
+			brave = 0.496259
+			dumb = 0.7931044
+			badS = False
+			state = 0
+			ToD = 7844.5799999997
+			idx = 2
+		}
+		CREW
+		{
+			name = Sigbro Kerman
+			brave = 0.8747516
+			dumb = 0.08739066
+			badS = False
+			state = 1
+			ToD = 0
+			idx = 0
+		}
+		CREW
+		{
+			name = Richsby Kerman
+			brave = 0.2267164
+			dumb = 0.4012354
+			badS = False
+			state = 1
+			ToD = 0
+			idx = 1
+		}
+		CREW
+		{
+			name = Jerney Kerman
+			brave = 0.4465209
+			dumb = 0.1828512
+			badS = False
+			state = 1
+			ToD = 0
+			idx = 0
+		}
+		CREW
+		{
+			name = Bartbus Kerman
+			brave = 0.04384458
+			dumb = 0.9250365
+			badS = False
+			state = 1
+			ToD = 0
+			idx = 1
+		}
+		CREW
+		{
+			name = Ribly Kerman
+			brave = 0.405145
+			dumb = 0.5784057
+			badS = True
+			state = 1
+			ToD = 0
+			idx = 2
+		}
+		VESSEL
+		{
+			pid = e42f55c2f0b54b08aefdc3ec749a85af
+			name = KGSS X-ray Satellite Alpha
+			type = Station
+			sit = ORBITING
+			landed = False
+			landedAt = 
+			splashed = False
+			met = 13108459.2582336
+			lct = 667.199999999683
+			root = 0
+			lat = 0.941643218215476
+			lon = -165.852744343032
+			alt = 131351.762845992
+			hgt = -1
+			nrm = -0.2643687,0.4619658,0.8465796
+			rot = -0.01771952,0.9217735,-0.229406,-0.3120779
+			CoM = -0.9729242,-4.711701,5.442433
+			stg = 1
+			prst = False
+			eva = False
+			ref = 1888100452
+			cPch = -0.872
+			cHdg = -4.114001
+			cMod = 0
+			ORBIT
+			{
+				SMA = 731659.627090105
+				ECC = 0.00877243753484244
+				INC = 1.91610736261166
+				LPE = 120.429016125219
+				LAN = 207.94422571449
+				MNA = 4.92547126591315
+				EPH = 13109126.4782336
+				REF = 1
+				OBJ = 0
+			}
+			PART
+			{
+				name = mk2LanderCabin
+				uid = 406650930
+				parent = 0
+				position = 0,0,0
+				rotation = 0,0,0,1
+				mirror = 1,1,1
+				istg = 0
+				dstg = 0
+				sqor = -1
+				sidx = -1
+				attm = 0
+				srfN = None, -1
+				attN = bottom, 3
+				attN = None, -1
+				mass = 2.5
+				temp = 18.98272
+				expt = 0.5
+				state = 0
+				connected = True
+				attached = True
+				crew = 0
+				crew = 1
+				EVENTS
+				{
+				}
+				ACTIONS
+				{
+				}
+				MODULE
+				{
+					name = ModuleCommand
+					isEnabled = True
+					controlSrcStatusText = Operational
+					EVENTS
+					{
+					}
+					ACTIONS
+					{
+					}
+				}
+				RESOURCE
+				{
+					name = ElectricCharge
+					amount = 100
+					maxAmount = 100
+					flowState = True
+					flowMode = Both
+				}
+			}
+			PART
+			{
+				name = largeSolarPanel
+				uid = 2403417436
+				parent = 0
+				position = 1.11137914657593,0.101560592651367,-1.9371509552002E-07
+				rotation = 0,-1,0,4.371139E-08
+				mirror = 1,1,1
+				istg = 0
+				dstg = 0
+				sqor = -1
+				sidx = -1
+				attm = 1
+				sym = 2
+				srfN = srfAttach, 0
+				mass = 0.14
+				temp = 18.90983
+				expt = 0.5
+				state = 0
+				connected = True
+				attached = True
+				EVENTS
+				{
+				}
+				ACTIONS
+				{
+				}
+				MODULE
+				{
+					name = ModuleDeployableSolarPanel
+					isEnabled = True
+					currentRotation = (-0.4839235, -0.4839241, -0.515575, 0.5155755)
+					stateString = EXTENDED
+					storedAnimationTime = 0
+					storedAnimationSpeed = 1
+					EVENTS
+					{
+						Extend
+						{
+							active = False
+							guiActive = True
+							guiIcon = Extend
+							guiName = Extend
+							category = Extend
+							guiActiveUnfocused = True
+							unfocusedRange = 4
+							externalToEVAOnly = True
+						}
+						Retract
+						{
+							active = True
+							guiActive = True
+							guiIcon = Retract
+							guiName = Retract
+							category = Retract
+							guiActiveUnfocused = True
+							unfocusedRange = 4
+							externalToEVAOnly = True
+						}
+					}
+					ACTIONS
+					{
+						ExtendPanelsAction
+						{
+							actionGroup = None
+						}
+						ExtendAction
+						{
+							actionGroup = Custom01
+						}
+						RetractAction
+						{
+							actionGroup = None
+						}
+					}
+				}
+			}
+			PART
+			{
+				name = largeSolarPanel
+				uid = 4004164901
+				parent = 0
+				position = -1.11137890815735,0.101560592651367,0
+				rotation = 0,0,0,-1
+				mirror = 1,1,1
+				istg = 0
+				dstg = 0
+				sqor = -1
+				sidx = -1
+				attm = 1
+				sym = 1
+				srfN = srfAttach, 0
+				mass = 0.14
+				temp = 18.88945
+				expt = 0.5
+				state = 0
+				connected = True
+				attached = True
+				EVENTS
+				{
+				}
+				ACTIONS
+				{
+				}
+				MODULE
+				{
+					name = ModuleDeployableSolarPanel
+					isEnabled = True
+					currentRotation = (-0.4754114, -0.475412, -0.5234346, 0.5234346)
+					stateString = EXTENDED
+					storedAnimationTime = 0
+					storedAnimationSpeed = 1
+					EVENTS
+					{
+						Extend
+						{
+							active = False
+							guiActive = True
+							guiIcon = Extend
+							guiName = Extend
+							category = Extend
+							guiActiveUnfocused = True
+							unfocusedRange = 4
+							externalToEVAOnly = True
+						}
+						Retract
+						{
+							active = True
+							guiActive = True
+							guiIcon = Retract
+							guiName = Retract
+							category = Retract
+							guiActiveUnfocused = True
+							unfocusedRange = 4
+							externalToEVAOnly = True
+						}
+					}
+					ACTIONS
+					{
+						ExtendPanelsAction
+						{
+							actionGroup = None
+						}
+						ExtendAction
+						{
+							actionGroup = Custom01
+						}
+						RetractAction
+						{
+							actionGroup = None
+						}
+					}
+				}
+			}
+			PART
+			{
+				name = trussPiece3x
+				uid = 1214858417
+				parent = 0
+				position = 0,-1.87880897521973,0
+				rotation = 0,0,0,1
+				mirror = 1,1,1
+				istg = 0
+				dstg = 0
+				sqor = -1
+				sidx = -1
+				attm = 0
+				srfN = None, -1
+				attN = None, -1
+				attN = top, 0
+				mass = 0.6
+				temp = 18.87188
+				expt = 0.5
+				state = 0
+				connected = True
+				attached = True
+				EVENTS
+				{
+				}
+				ACTIONS
+				{
+				}
+			}
+			ACTIONGROUPS
+			{
+				Stage = True, 56.6400000000032
+				Gear = True, 0
+				Light = False, 0
+				RCS = False, 0
+				SAS = False, 0
+				Brakes = False, 0
+				Abort = False, 0
+				Custom01 = False, 0
+				Custom02 = False, 0
+				Custom03 = False, 0
+				Custom04 = False, 0
+				Custom05 = False, 0
+				Custom06 = False, 0
+				Custom07 = False, 0
+				Custom08 = False, 0
+				Custom09 = False, 0
+				Custom10 = False, 0
+			}
+
+		}
+		VESSEL
+		{
+			pid = e42f55c2f0b54b08aefdc3ec749a85af
+			name = KGSS X-ray Satellite Beta
+			type = Station
+			sit = ORBITING
+			landed = False
+			landedAt = 
+			splashed = False
+			met = 13108459.2582336
+			lct = 667.199999999683
+			root = 0
+			lat = 0.941643218215476
+			lon = -165.852744343032
+			alt = 131351.762845992
+			hgt = -1
+			nrm = -0.2643687,0.4619658,0.8465796
+			rot = -0.01771952,0.9217735,-0.229406,-0.3120779
+			CoM = -0.9729242,-4.711701,5.442433
+			stg = 1
+			prst = False
+			eva = False
+			ref = 1888100452
+			cPch = -0.872
+			cHdg = -4.114001
+			cMod = 0
+			ORBIT
+			{
+				SMA = 631659.627090105
+				ECC = 0.00877243753484244
+				INC = 1.21610736261166
+				LPE = 120.429016125219
+				LAN = 207.94422571449
+				MNA = 4.92547126591315
+				EPH = 13109126.4782336
+				REF = 2
+				OBJ = 0
+			}
+			PART
+			{
+				name = mk2LanderCabin
+				uid = 406650930
+				parent = 0
+				position = 0,0,0
+				rotation = 0,0,0,1
+				mirror = 1,1,1
+				istg = 0
+				dstg = 0
+				sqor = -1
+				sidx = -1
+				attm = 0
+				srfN = None, -1
+				attN = bottom, 3
+				attN = None, -1
+				mass = 2.5
+				temp = 18.98272
+				expt = 0.5
+				state = 0
+				connected = True
+				attached = True
+				crew = 0
+				crew = 1
+				EVENTS
+				{
+				}
+				ACTIONS
+				{
+				}
+				MODULE
+				{
+					name = ModuleCommand
+					isEnabled = True
+					controlSrcStatusText = Operational
+					EVENTS
+					{
+					}
+					ACTIONS
+					{
+					}
+				}
+				RESOURCE
+				{
+					name = ElectricCharge
+					amount = 100
+					maxAmount = 100
+					flowState = True
+					flowMode = Both
+				}
+			}
+			PART
+			{
+				name = largeSolarPanel
+				uid = 2403417436
+				parent = 0
+				position = 1.11137914657593,0.101560592651367,-1.9371509552002E-07
+				rotation = 0,-1,0,4.371139E-08
+				mirror = 1,1,1
+				istg = 0
+				dstg = 0
+				sqor = -1
+				sidx = -1
+				attm = 1
+				sym = 2
+				srfN = srfAttach, 0
+				mass = 0.14
+				temp = 18.90983
+				expt = 0.5
+				state = 0
+				connected = True
+				attached = True
+				EVENTS
+				{
+				}
+				ACTIONS
+				{
+				}
+				MODULE
+				{
+					name = ModuleDeployableSolarPanel
+					isEnabled = True
+					currentRotation = (-0.4839235, -0.4839241, -0.515575, 0.5155755)
+					stateString = EXTENDED
+					storedAnimationTime = 0
+					storedAnimationSpeed = 1
+					EVENTS
+					{
+						Extend
+						{
+							active = False
+							guiActive = True
+							guiIcon = Extend
+							guiName = Extend
+							category = Extend
+							guiActiveUnfocused = True
+							unfocusedRange = 4
+							externalToEVAOnly = True
+						}
+						Retract
+						{
+							active = True
+							guiActive = True
+							guiIcon = Retract
+							guiName = Retract
+							category = Retract
+							guiActiveUnfocused = True
+							unfocusedRange = 4
+							externalToEVAOnly = True
+						}
+					}
+					ACTIONS
+					{
+						ExtendPanelsAction
+						{
+							actionGroup = None
+						}
+						ExtendAction
+						{
+							actionGroup = Custom01
+						}
+						RetractAction
+						{
+							actionGroup = None
+						}
+					}
+				}
+			}
+			PART
+			{
+				name = largeSolarPanel
+				uid = 4004164901
+				parent = 0
+				position = -1.11137890815735,0.101560592651367,0
+				rotation = 0,0,0,-1
+				mirror = 1,1,1
+				istg = 0
+				dstg = 0
+				sqor = -1
+				sidx = -1
+				attm = 1
+				sym = 1
+				srfN = srfAttach, 0
+				mass = 0.14
+				temp = 18.88945
+				expt = 0.5
+				state = 0
+				connected = True
+				attached = True
+				EVENTS
+				{
+				}
+				ACTIONS
+				{
+				}
+				MODULE
+				{
+					name = ModuleDeployableSolarPanel
+					isEnabled = True
+					currentRotation = (-0.4754114, -0.475412, -0.5234346, 0.5234346)
+					stateString = EXTENDED
+					storedAnimationTime = 0
+					storedAnimationSpeed = 1
+					EVENTS
+					{
+						Extend
+						{
+							active = False
+							guiActive = True
+							guiIcon = Extend
+							guiName = Extend
+							category = Extend
+							guiActiveUnfocused = True
+							unfocusedRange = 4
+							externalToEVAOnly = True
+						}
+						Retract
+						{
+							active = True
+							guiActive = True
+							guiIcon = Retract
+							guiName = Retract
+							category = Retract
+							guiActiveUnfocused = True
+							unfocusedRange = 4
+							externalToEVAOnly = True
+						}
+					}
+					ACTIONS
+					{
+						ExtendPanelsAction
+						{
+							actionGroup = None
+						}
+						ExtendAction
+						{
+							actionGroup = Custom01
+						}
+						RetractAction
+						{
+							actionGroup = None
+						}
+					}
+				}
+			}
+			PART
+			{
+				name = trussPiece3x
+				uid = 1214858417
+				parent = 0
+				position = 0,-1.87880897521973,0
+				rotation = 0,0,0,1
+				mirror = 1,1,1
+				istg = 0
+				dstg = 0
+				sqor = -1
+				sidx = -1
+				attm = 0
+				srfN = None, -1
+				attN = None, -1
+				attN = top, 0
+				mass = 0.6
+				temp = 18.87188
+				expt = 0.5
+				state = 0
+				connected = True
+				attached = True
+				EVENTS
+				{
+				}
+				ACTIONS
+				{
+				}
+			}
+			ACTIONGROUPS
+			{
+				Stage = True, 56.6400000000032
+				Gear = True, 0
+				Light = False, 0
+				RCS = False, 0
+				SAS = False, 0
+				Brakes = False, 0
+				Abort = False, 0
+				Custom01 = False, 0
+				Custom02 = False, 0
+				Custom03 = False, 0
+				Custom04 = False, 0
+				Custom05 = False, 0
+				Custom06 = False, 0
+				Custom07 = False, 0
+				Custom08 = False, 0
+				Custom09 = False, 0
+				Custom10 = False, 0
+			}
+
+		}
+	}
+	SCENARIO
+	{
+		name = MinmusComposition
+		scene = 7
+	}
+}

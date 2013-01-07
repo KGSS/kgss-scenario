@@ -28,13 +28,13 @@ class SolarFlareGenerator : ProbabilityEventGenerator
             switch (currentEvent)
             {
                 case 0:
-                    KGSSLogger.Log("Neutrino Sensor Module - No Flare of duration " + duration);
+                    KGSSPluginLogger.Log("Neutrino Sensor Module - No Flare of duration " + duration);
                     break;
                 case 1:
-                    KGSSLogger.Log("Neutrino Sensor Module - Small Flare of duration " + duration);
+                    KGSSPluginLogger.Log("Neutrino Sensor Module - Small Flare of duration " + duration);
                     break;
                 case 2:
-                    KGSSLogger.Log("Neutrino Sensor Module - Large Flare of duration " + duration);
+                    KGSSPluginLogger.Log("Neutrino Sensor Module - Large Flare of duration " + duration);
                     break;
             }
         }

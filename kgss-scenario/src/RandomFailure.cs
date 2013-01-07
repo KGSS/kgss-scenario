@@ -25,7 +25,7 @@ class RandomFailure : TutorialScenario
         {
             config.load();
 
-            KGSSLogger.printParts(FlightGlobals.ActiveVessel.parts);
+            KGSSPluginLogger.printParts(FlightGlobals.ActiveVessel.parts);
 
             initialiseRandomNumbers();
         
@@ -43,8 +43,8 @@ class RandomFailure : TutorialScenario
         }
         catch (Exception e)
         {
-            KGSSLogger.Out(e.Message); 
-            KGSSLogger.Out(e.StackTrace); 
+            KGSSPluginLogger.Out(e.Message); 
+            KGSSPluginLogger.Out(e.StackTrace); 
         }
     }
 
@@ -80,7 +80,7 @@ class RandomFailure : TutorialScenario
 
     private void initialiseFailures(ref List<FailureDescriptor> possibleFailures)
     {
-        KGSSLogger.Log(possibleFailures.ToString());
+        KGSSPluginLogger.Log(possibleFailures.ToString());
         initialiseIntermittentExplosions(ref possibleFailures);
         //initialiseIntermittentDetatch(ref possibleFailures);
         initialiseIntermittentFuelLeak(ref possibleFailures);
@@ -284,7 +284,7 @@ class RandomFailure : TutorialScenario
 
     protected void fixedUpdateFailureGenerator()
     {
-        KGSSLogger.Log("RandomFailure.fixedUpdateFailureGenerator");
+        KGSSPluginLogger.Log("RandomFailure.fixedUpdateFailureGenerator");
         failureGenerator.fixedUpdate();
     }
 

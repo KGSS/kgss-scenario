@@ -60,14 +60,14 @@ class FailureGenerator
             failureProbability = 1;
         }
 
-        KGSSLogger.Log("Failure Generator - Failure probability set to: " + failureProbability);
+        KGSSPluginLogger.Log("Failure Generator - Failure probability set to: " + failureProbability);
     }
 
     private void potentiallyCauseFailure()
     {
         if (!FlightGlobals.ActiveVessel.Landed)
         {
-            KGSSLogger.Log("Failure Generator - Checking for failure");
+            KGSSPluginLogger.Log("Failure Generator - Checking for failure");
 
             if (random.NextDouble() < failureProbability)
             {

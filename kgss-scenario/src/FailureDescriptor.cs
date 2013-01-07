@@ -11,7 +11,7 @@ class FailureDescriptor
 
     private Failure itsFailure;
     public Failure failure 
-    { get { KGSSLogger.Log("Failure Descriptor - Activating: " + name); return itsFailure; } 
+    { get { KGSSPluginLogger.Log("Failure Descriptor - Activating: " + name); return itsFailure; } 
         set { itsFailure = value; } }
     public FailureGarbage failureGarbage
     { get; set; }

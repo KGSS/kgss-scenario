@@ -1,9 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <config>
-  <int name="START_FAILURE_DELAY_SECONDS">10</int>
-  <int name="FAILURE_INTERVAL_SECONDS">10</int>
+  <int name="START_FAILURE_DELAY_SECONDS">300</int>
+  <int name="FAILURE_INTERVAL_SECONDS">300</int>
   <vector3d name="FAILURE_PROBABILITY">
-    <x>0.5</x>
+    <x>0.7</x>
     <y>0</y>
     <z>0</z>
   </vector3d>
@@ -77,4 +77,5 @@
     <y>1</y>
     <z>1</z>
   </vector3d>
+  <string name="SOI">Minmus</string>
 </config>

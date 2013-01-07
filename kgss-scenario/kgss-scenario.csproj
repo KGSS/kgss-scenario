@@ -48,7 +48,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="src\DetermineTheCompositionOfMinmus.cs" />
+    <Compile Include="src\ImpactProbe.cs" />
+    <Compile Include="src\MinmusComposition.cs" />
     <Compile Include="src\FailureDescriptor.cs" />
     <Compile Include="src\FailureGenerator.cs" />
     <Compile Include="src\KGSSLogger.cs" />
@@ -61,16 +62,21 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="saves\scenarios\banners\Neutrinos.png" />
-    <Content Include="saves\scenarios\banners\Determine The Composition Of Minmus.png" />
+    <Content Include="saves\scenarios\banners\Minmus Composition.png" />
     <Content Include="saves\scenarios\banners\Random Failure.png" />
     <Content Include="PluginData\kgss-scenario\config.xml">
       <SubType>Designer</SubType>
     </Content>
   </ItemGroup>
   <ItemGroup>
+    <None Include="Parts\impactProbe\model.mu" />
+    <None Include="Parts\impactProbe\model000.mbm" />
+    <None Include="Parts\impactProbe\model001.mbm" />
+    <None Include="Parts\impactProbe\part.cfg" />
     <None Include="Parts\neutrinoDetector\model.mu" />
     <None Include="Parts\neutrinoDetector\model000.mbm" />
     <None Include="Parts\neutrinoDetector\part.cfg" />
+    <None Include="saves\scenarios\Minmus Composition.sfs" />
     <None Include="saves\scenarios\Neutrinos.sfs" />
     <None Include="saves\scenarios\Random Failure.sfs" />
   </ItemGroup>

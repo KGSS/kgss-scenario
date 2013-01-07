@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Text;
 using UnityEngine;
 
-class KGSSLogger
+class KGSSPluginLogger
 {
     public static void Log(String s)
     {
