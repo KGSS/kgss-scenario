@@ -55,6 +55,7 @@
     <Compile Include="src\KGSSLogger.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="src\NeutrinoSensorModule.cs" />
+    <Compile Include="src\NeutrinosScenario.cs" />
     <Compile Include="src\ProbabilityEventGenerator.cs" />
     <Compile Include="src\RandomFailure.cs" />
     <Compile Include="src\Disaster.cs" />

@@ -27,48 +27,58 @@ class NeutrinoSensorModule : PartModule
     Vector3d l, d, s ,sm, jm, j, b, c, sd, jd;
 
     ProbabilityEventGenerator sunSolar, joolSolar;
+    NeutrinosScenario ns = null;
 
     public override void OnStart(PartModule.StartState state)
     {
-        sun = getBodyByString("Sun");
-        jool = getBodyByString("Jool");
-        readFunctionParameters();
-        random = new Random(System.DateTime.Now.Second);
-        sunSolar = new SolarFlareGenerator(new List<int> { (int)s.x, (int)s.y, (int)s.z }, random, sd.x, sd.y);
-        joolSolar = new SolarFlareGenerator(new List<int> { (int)j.x, (int)j.y, (int)j.z }, random, jd.x, jd.y);
+        ns = getNeutrinosScenarioModule();
+        
+        if (ns != null)
+        {
+            sun = getBodyByString("Sun");
+            jool = getBodyByString("Jool");
+            readFunctionParameters();
+            random = new Random(System.DateTime.Now.Second);
+            sunSolar = new SolarFlareGenerator(new List<int> { (int)s.x, (int)s.y, (int)s.z }, random, sd.x, sd.y);
+            joolSolar = new SolarFlareGenerator(new List<int> { (int)j.x, (int)j.y, (int)j.z }, random, jd.x, jd.y);
+        }
 
         base.OnStart(state);
     }
 
     public override void  OnUpdate()
     {
-        if (timeElapsed > c.x)
+        if (ns != null)
         {
-            timeElapsed = 0;
 
-            if (getDeployed())
+            if (timeElapsed > c.x)
             {
-                //Power code from olex
-                float requiredPower = powerConsumption * TimeWarp.deltaTime;
-                float availPower = part.RequestResource("ElectricCharge", requiredPower);
+                timeElapsed = 0;
 
-                if (availPower < requiredPower)
+                if (getDeployed())
                 {
-                    reading = "Not enough power";
+                    //Power code from olex
+                    float requiredPower = powerConsumption * TimeWarp.deltaTime;
+                    float availPower = part.RequestResource("ElectricCharge", requiredPower);
+
+                    if (availPower < requiredPower)
+                    {
+                        reading = "Not enough power";
+                    }
+                    else
+                    {
+                        reading = neutrinoFunction();
+                    }
                 }
                 else
                 {
-                    reading = neutrinoFunction();
+                    reading = "Dish not deployed";
                 }
             }
             else
             {
-                reading = "Dish not deployed";
+                timeElapsed += TimeWarp.deltaTime;
             }
-        }
-        else
-        {
-           timeElapsed += TimeWarp.deltaTime;
         }
 
         base.OnUpdate();
@@ -198,6 +208,19 @@ class NeutrinoSensorModule : PartModule
             if (referenceBody.GetName().Equals(body))
             {
                 return referenceBody;
+            }
+        }
+
+        return null;
+    }
+
+    private NeutrinosScenario getNeutrinosScenarioModule()
+    {
+        foreach (ScenarioModule s in ScenarioRunner.GetLoadedModules())
+        {
+            if (s.GetType().Equals(typeof(NeutrinosScenario)))
+            {
+                return (NeutrinosScenario)s;
             }
         }
 

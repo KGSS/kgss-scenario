@@ -57,6 +57,7 @@ GAME
 	}
 	SCENARIO
 	{
+		name = NeutrinosScenario
 		scene = 7
 	}
 }

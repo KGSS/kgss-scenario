@@ -2,7 +2,7 @@ GAME
 {
 	version = 0.18.2
 	Title = [KGSS] Minmus Composition 
-	Description = The KGSS wishes to understand the physical and chemical properties of the ice that covers Minmus. Countless probes and rovers have been sent to the surface for samples, but this allows only for a surface analysis. Attach an impact probe onto your craft (You will find this under the Science Tab in the VAB/SPH) and crash it into the surface. This will allow the X-ray satellite in Kerbin orbit to image the resulting dust cloud. The success of the mission will vary based on the probes velocity, and the distance from the satellite at the time of impact.
+	Description = The KGSS wishes to understand the physical and chemical properties of the ice that covers Minmus. Countless probes and rovers have been sent to the surface for samples, but this allows only for a surface analysis. Attach an impact probe onto your craft (You will find this under the Science Tab in the VAB/SPH) and crash it into the surface. This will allow the X-ray satellites in Kerbin and Mun orbits to image the resulting dust cloud. The success of the mission will vary based on the probes velocity, and the distance from the satellite at the time of impact.
 	Mode = 0
 	Status = 1
 	scene = 5
