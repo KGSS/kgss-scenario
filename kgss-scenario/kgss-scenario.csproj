@@ -77,6 +77,9 @@
     <None Include="Parts\neutrinoDetector\model.mu" />
     <None Include="Parts\neutrinoDetector\model000.mbm" />
     <None Include="Parts\neutrinoDetector\part.cfg" />
+    <None Include="Parts\StingerProbe9001\model.mu" />
+    <None Include="Parts\StingerProbe9001\model000.mbm" />
+    <None Include="Parts\StingerProbe9001\part.cfg" />
     <None Include="saves\scenarios\Minmus Composition.sfs" />
     <None Include="saves\scenarios\Neutrinos.sfs" />
     <None Include="saves\scenarios\Random Failure.sfs" />
