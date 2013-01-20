@@ -10,7 +10,7 @@ public class MinmusComposition : TutorialScenario
     #region Constants
 
     public static double TERRAIN_THRESHOLD = 30;
-    int SCORE_MULT = 1000;
+    int SCORE_MULT = 10000000;
 
     #endregion
 

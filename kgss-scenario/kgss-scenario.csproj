@@ -70,16 +70,12 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Parts\impactProbe\model.mu" />
-    <None Include="Parts\impactProbe\model000.mbm" />
-    <None Include="Parts\impactProbe\model001.mbm" />
-    <None Include="Parts\impactProbe\part.cfg" />
     <None Include="Parts\neutrinoDetector\model.mu" />
     <None Include="Parts\neutrinoDetector\model000.mbm" />
     <None Include="Parts\neutrinoDetector\part.cfg" />
-    <None Include="Parts\StingerProbe9001\model.mu" />
-    <None Include="Parts\StingerProbe9001\model000.mbm" />
-    <None Include="Parts\StingerProbe9001\part.cfg" />
+    <None Include="Parts\stingerProbe\model.mu" />
+    <None Include="Parts\stingerProbe\model000.mbm" />
+    <None Include="Parts\stingerProbe\part.cfg" />
     <None Include="saves\scenarios\Minmus Composition.sfs" />
     <None Include="saves\scenarios\Neutrinos.sfs" />
     <None Include="saves\scenarios\Random Failure.sfs" />
